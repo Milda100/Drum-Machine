@@ -8,6 +8,13 @@ import SocialIcons from './components/SocialIcons'
 
 function App() {
   const [displayText, setDisplayText] = useState("");
+  const [activeKey, setActiveKey] = useState(null);
+
+  const activatePad = (key) => {
+    setActiveKey(key); // Set active key
+    setTimeout(() => setActiveKey(null), 200); // Reset after 200ms
+  };
+
 
   useEffect(() => {
     const handleKeydown = (event) => {
@@ -20,6 +27,7 @@ function App() {
           audioElement.currentTime = 0; // Ensure playback starts from the beginning
           audioElement.play();
           setDisplayText(drumPad.id);
+          activatePad(key);
         }
       }
     };
@@ -34,18 +42,27 @@ function App() {
     if (audioElement) {
       audioElement.play();
       setDisplayText(padId);
+      activatePad(audioId);
     }
   };
 
   return (
     <>
-    <h1>Drum Machine</h1>
+    <h1 id="title" className='text-center'>Drum Machine</h1>
       <Container id="drum-machine">
         <div id="display">
+          <div id="keypad">
           {drumPads.map((pad) => (
-            <DrumPad key={pad.key} pad={pad} onClick={handleButtonClick} />
+            <DrumPad 
+            key={pad.key} 
+            pad={pad} 
+            onClick={handleButtonClick} 
+            isActive={activeKey === pad.key} />
           ))}
-          <p>{displayText}</p>
+          </div>
+          <div>
+            <p>{displayText}</p> 
+          </div>
         </div>
       </Container>
       <SocialIcons />

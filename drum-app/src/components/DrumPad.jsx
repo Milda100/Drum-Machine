@@ -1,16 +1,17 @@
-import Button from 'react-bootstrap/Button'
+import React from "react";
+// import Button from "react-bootstrap/Button";
 
-  function DrumPad({ pad, onClick }) {
+  function DrumPad({ pad, onClick, isActive }) {
     return (
-      <Button
-        className="drum-pad"
+      <button
+        className={`drum-pad ${isActive ? "active" : ""}`}
         id={pad.id}
         onClick={() => onClick(pad.id, pad.key)}
         aria-label={`Play ${pad.id}`}
       >
         {pad.key}
         <audio className="clip" id={pad.key} src={pad.src}></audio>
-      </Button>
+      </button>
     );
   }
 

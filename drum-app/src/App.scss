@@ -1,42 +1,93 @@
-// #root {
-//   max-width: 1280px;
-//   margin: 0 auto;
-//   padding: 2rem;
-//   text-align: center;
-// }
+@use './styles/variables' as *;
+@use './styles/mixins' as *;
+@use './styles/funtions' as *;
+  
+ 
+  //scss
+  body {
+    font-family: 'Roboto', Arial, sans-serif;
+    background: linear-gradient(90deg, $background1 0%, $background2 50%, $background3 100%);
+  }
 
-// .logo {
-//   height: 6em;
-//   padding: 1.5em;
-//   will-change: filter;
-//   transition: filter 300ms;
-// }
-// .logo:hover {
-//   filter: drop-shadow(0 0 2em #646cffaa);
-// }
-// .logo.react:hover {
-//   filter: drop-shadow(0 0 2em #61dafbaa);
-// }
+  #title {
+    @include make-container(50%, auto, 2rem, 1rem, transparent, 0rem);
+    font-size: 3rem;
+    color: $background1;
+    transition: transform 0.3s ease-in-out, color 0.3s ease-in-out;
+    
+    @include hover-effect($translateY: -5px, $shadow-range: 0px,  $shadow-color: $lighter-shadow);
+  
+      &:hover {
+        color: lighten-color($background3, 20%);
+      }
+  }
+  
+  .container {
+    @include make-container();
+    box-shadow: 1px 1px 10px 10px $container-shadow;
+  }
 
-// @keyframes logo-spin {
-//   from {
-//     transform: rotate(0deg);
-//   }
-//   to {
-//     transform: rotate(360deg);
-//   }
-// }
+  #keypad {
+    display: grid;
+    grid-template-columns: repeat(3, 1fr);
+    grid-template-rows: repeat(3, auto);
+    gap: 5px;
+    width: fit-content;
+    margin: auto;    
+  }
 
-// @media (prefers-reduced-motion: no-preference) {
-//   a:nth-of-type(2) .logo {
-//     animation: logo-spin infinite 20s linear;
-//   }
-// }
+  .drum-pad {
+    width: 100px;
+    height: 100px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    font-size: 1.5rem;
+  
+    background-color: $background1;
+    color: white;
+    font-weight: bold;
+    border-radius: 0.5rem;
+    margin: 0.5rem;
+    cursor: pointer;
+        
+        transition: background-color 0.3s ease, transform 0.2s ease;
+      
+        &:hover {
+          background-color: lighten(#833AB4, 10%);
+        }
+      
+        &.active {
+          background-color: lighten-color($background3, 20%);
+        }
+      }
 
-// .card {
-//   padding: 2em;
-// }
-
-// .read-the-docs {
-//   color: #888;
-// }
+    p {
+        text-align: center;
+        width: 30%;
+        margin: 0 auto;
+        font-size: 1.5rem;
+        color: black;
+        background-color: $background3;
+        padding: 1rem;
+        border-radius: 0.5rem;
+    }
+  
+  .social-icons {
+    @include make-container(50%, auto, 0.5rem, 1rem, transparent, 0rem);
+    display: flex;
+    justify-content: center;
+    gap: 1.5rem;
+    
+    a {
+      font-size: 1rem;
+      color: $background1;
+      transition: transform 0.3s ease-in-out, color 0.3s ease-in-out;
+      
+      @include hover-effect($translateY: -5px, $shadow-range: 0px,  $shadow-color: $lighter-shadow);
+  
+      &:hover {
+        color: lighten-color($background3, 20%);
+      }
+    }
+  }

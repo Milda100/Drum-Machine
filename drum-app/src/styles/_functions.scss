@@ -1,0 +1,4 @@
+//functions
+@function lighten-color($color, $amount) {
+    @return lighten($color, $amount);
+  }

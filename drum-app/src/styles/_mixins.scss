@@ -1,0 +1,27 @@
+ //mixins
+ @mixin make-container($width: 100%, $height: auto, $padding: 2rem 1.5rem, $margin-bottom: 2rem, $container-bg: white, $border-radius: 1rem) {
+    width: $width;
+    height: $height;
+    padding: $padding;
+    margin-right: auto;
+    margin-left: auto;
+    margin-bottom: $margin-bottom;
+    background-color: $container-bg;
+    border-radius: $border-radius;
+  }
+  
+  @mixin responsive-container {
+    @media (max-width: 768px) {
+      width: 100%;
+      height: auto;
+      padding: 0.5rem;
+      margin-bottom: 0.5rem;
+    }
+  }
+  
+  @mixin hover-effect($translateY: -5px, $shadow-range:7px 7px 10px 3px,  $shadow-color: $lighter-shadow) {
+    &:hover {
+      transform: translateY($translateY);
+      box-shadow: $shadow-range $shadow-color;
+    }
+  }
